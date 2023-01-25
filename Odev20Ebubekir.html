@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ödev 20 Ebubekir</title>
+    <style>
+        p::first-letter {
+            font-size: 2rem;
+            color: blue;
+        }
+
+        p::after {
+            content: "!!!";
+            color: green;
+            font-size: 20px;
+        }
+
+        body {
+            color: blueviolet;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <p style="color: red; font-family: verdana; font-size: 17px;">1. Elemanları tamsayı olan ve rastgele olarak verilen 15 elemanlı bir diziyi büyükten küçüğe sıralayan javascript kodunu hazır fonksiyonlar (sort vb…) kullanmadan yazınız.</p>
+    <script>
+        let dizi1 = new Array(15);
+        for (let i = 0; i < dizi1.length; i++) {
+            dizi1[i] = Math.floor(Math.random() * 100);
+        }
+        document.write("dizi'nin elemanları sırasız halde: <br>" + dizi1);
+        document.write("<br>");
+        document.write("<br>");
+        for (let i = 0; i < dizi1.length; i++) {
+            for (let j = i + 1; j < dizi1.length; j++) {
+                if (dizi1[i] < dizi1[j]) {
+                    let deger = dizi1[i];
+                    dizi1[i] = dizi1[j];
+                    dizi1[j] = deger;
+                }
+            }
+        }
+        document.write("dizi'nin elemanları büyükten küçüğe sıralı halde: <br>" + dizi1.join("> "));
+        document.write("<br>");
+        document.write("<hr>");
+    </script>
+    <p style="color: rgb(255, 0, 0); font-family: verdana; font-size: 17px;">2.Elemanları tamsayı olan ve rastgele olarak verilen 15 elemanlı bir dizinin en büyük elemanı ile en küçük elemanının dahil edilmeden hesaplandığı aritmetik ortalamayı hesaplayan javascript kodunu yazınız. (En büyük elemandan ve/veya en küçük elemandan birden fazla varsa hiçbirisinin hesaplamaya dahil olmaması gereklidir.) (Hesaplamaları yaparken min,max vb... hazır fonksiyonlar kullanmayınız.).</p>
+    <script>
+        let dizi2 = new Array(15);
+        for (let i = 0; i < dizi2.length; i++) {
+            dizi2[i] = Math.ceil(Math.random() * 100);
+        }
+        document.write("dizi'nin elemanları sırasız halde: <br>" + dizi2);
+        document.write("<br>");
+        document.write("<br>");
+        for (let i = 0; i < dizi2.length; i++) {
+            for (let j = i + 1; j < dizi2.length; j++) {
+                if (dizi2[i] < dizi2[j]) {
+                    let deger = dizi2[i];
+                    dizi2[i] = dizi2[j];
+                    dizi2[j] = deger;
+                }
+            }
+        }
+        let max = dizi2[0];
+        let min = dizi2[0];
+        let toplam = 0;
+        let maxadet = 0;
+        let minadet = 0;
+
+        for (let i = 0; i < dizi2.length; i++) {
+
+            if (dizi2[i] > max) {
+                max = dizi2[i];
+                maxadet = 1;
+            }
+            if (dizi2[i] < min) {
+                min = dizi2[i];
+                minadet = 1;
+            }
+            if (dizi2[i] == max) {
+                maxadet++;
+            }
+            if (dizi2[i] == min) {
+                minadet++;
+            }
+            toplam += dizi2[i];
+        }
+
+        let aritmatikortalama = (toplam - max * maxadet - min * minadet) / (dizi2.length - maxadet - minadet);
+        document.write("dizi'nin elemanları büyükten küçüğe sıralı halde: <br>" + dizi2.join("> "));
+        document.write("<br><br>");
+        document.write("dizi1'in aritmatik ortalamsı: " + aritmatikortalama);
+        document.write("<hr>");
+    </script>
+
+    <p style="color: red; font-family: verdana; font-size: 17px;">3.Textbox’dan yazılan bir kelimenin sesli harf içerip içermediğini bulan javascript kodunu yazınız. Sesli harf içerip içermediğinin belirlenmesi buton aracılığı ile olmalıdır. (Sesli harf olarak sadece A,a,E,e,I,i,O,o,U,u harfleri düşünülebilir).</p>
+    <label>Kelime Giriniz:<input type="text" id="txt"></label>
+    <button id="btnAra">Sesli Harf Ara</button>
+    <script>
+        document.getElementById("btnAra").addEventListener("click", function () {
+            let kelime = document.getElementById("txt").value;
+            let sesli = "aeiouAEIOU";
+            let seslivar = false;
+            for (let i = 0; i < kelime.length; i++) {
+                if (sesli.indexOf(kelime[i]) != -1) {
+                    seslivar = true;
+                    break;
+                }
+            }
+            if (seslivar) {
+                alert(kelime + " kelimesi ünlü harf içeriyor.");
+            } else {
+                alert(kelime + " kelimesi ünlü harf içermiyor.");
+            }
+        });
+    </script>
+</body>
+
+</html>
